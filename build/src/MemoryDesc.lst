@@ -1,0 +1,436 @@
+GAS LISTING /tmp/ccFtPDiz.s 			page 1
+
+
+   1              		.file	"MemoryDesc.cpp"
+   2              		.option pic
+   3              		.option norelax
+   4              		.text
+   5              	.Ltext0:
+   6              		.align	2
+   7              		.globl	_Z6insertPP10MemoryDescS0_12MemoryStatus
+   9              	_Z6insertPP10MemoryDescS0_12MemoryStatus:
+  10              	.LFB0:
+  11              		.file 1 "src/MemoryDesc.cpp"
+   1:src/MemoryDesc.cpp **** #include "../h/MemoryDesc.hpp"
+   2:src/MemoryDesc.cpp **** 
+   3:src/MemoryDesc.cpp **** void insert(MemoryDesc** head, MemoryDesc* toInsert, MemoryStatus status){
+  12              		.loc 1 3 74
+  13              		.cfi_startproc
+  14              	.LVL0:
+  15 0000 130101FF 		addi	sp,sp,-16
+  16              		.cfi_def_cfa_offset 16
+  17 0004 23348100 		sd	s0,8(sp)
+  18              		.cfi_offset 8, -8
+  19 0008 13040101 		addi	s0,sp,16
+  20              		.cfi_def_cfa 8, 0
+   4:src/MemoryDesc.cpp ****     if(toInsert == nullptr) return;
+  21              		.loc 1 4 5
+  22 000c 63800502 		beqz	a1,.L1
+   5:src/MemoryDesc.cpp **** 
+   6:src/MemoryDesc.cpp ****     toInsert->status = status;
+  23              		.loc 1 6 5
+  24              		.loc 1 6 22 is_stmt 0
+  25 0010 23ACC500 		sw	a2,24(a1)
+   7:src/MemoryDesc.cpp **** 
+   8:src/MemoryDesc.cpp ****     if (*head == nullptr){
+  26              		.loc 1 8 5 is_stmt 1
+  27              	.LBB2:
+  28              		.loc 1 8 9 is_stmt 0
+  29 0014 83370500 		ld	a5,0(a0)
+  30              		.loc 1 8 5
+  31 0018 63800702 		beqz	a5,.L8
+  32              	.LBE2:
+   9:src/MemoryDesc.cpp ****         *head = toInsert;
+  10:src/MemoryDesc.cpp ****     }
+  11:src/MemoryDesc.cpp ****     else if(toInsert < *head){
+  33              		.loc 1 11 10 is_stmt 1
+  34              	.LBB6:
+  35              	.LBB3:
+  36 001c 63F2F502 		bleu	a5,a1,.L4
+  12:src/MemoryDesc.cpp ****         toInsert->next = *head;
+  37              		.loc 1 12 9
+  38              		.loc 1 12 24 is_stmt 0
+  39 0020 23B0F500 		sd	a5,0(a1)
+  13:src/MemoryDesc.cpp ****         (*head)->prev = toInsert;
+  40              		.loc 1 13 9 is_stmt 1
+  41              		.loc 1 13 23 is_stmt 0
+  42 0024 23B4B700 		sd	a1,8(a5)
+  14:src/MemoryDesc.cpp ****         *head = toInsert;
+  43              		.loc 1 14 9 is_stmt 1
+  44              		.loc 1 14 15 is_stmt 0
+GAS LISTING /tmp/ccFtPDiz.s 			page 2
+
+
+  45 0028 2330B500 		sd	a1,0(a0)
+  46              	.L1:
+  47              	.LBE3:
+  48              	.LBE6:
+  15:src/MemoryDesc.cpp ****     }
+  16:src/MemoryDesc.cpp ****     else{
+  17:src/MemoryDesc.cpp ****         MemoryDesc* temp= *head;
+  18:src/MemoryDesc.cpp **** 
+  19:src/MemoryDesc.cpp ****         while (temp->next != nullptr &&
+  20:src/MemoryDesc.cpp ****                toInsert > temp->next)
+  21:src/MemoryDesc.cpp ****         temp=temp->next;
+  22:src/MemoryDesc.cpp **** 
+  23:src/MemoryDesc.cpp ****         toInsert->next = temp->next;
+  24:src/MemoryDesc.cpp **** 
+  25:src/MemoryDesc.cpp ****         if (temp->next != nullptr)
+  26:src/MemoryDesc.cpp ****             toInsert->next->prev = toInsert;
+  27:src/MemoryDesc.cpp **** 
+  28:src/MemoryDesc.cpp ****         temp->next = toInsert;
+  29:src/MemoryDesc.cpp ****         toInsert->prev = temp;
+  30:src/MemoryDesc.cpp ****     }
+  31:src/MemoryDesc.cpp **** }
+  49              		.loc 1 31 1
+  50 002c 03348100 		ld	s0,8(sp)
+  51              		.cfi_remember_state
+  52              		.cfi_restore 8
+  53              		.cfi_def_cfa 2, 16
+  54 0030 13010101 		addi	sp,sp,16
+  55              		.cfi_def_cfa_offset 0
+  56 0034 67800000 		jr	ra
+  57              	.L8:
+  58              		.cfi_restore_state
+  59              	.LBB7:
+   9:src/MemoryDesc.cpp ****     }
+  60              		.loc 1 9 9 is_stmt 1
+   9:src/MemoryDesc.cpp ****     }
+  61              		.loc 1 9 15 is_stmt 0
+  62 0038 2330B500 		sd	a1,0(a0)
+  63 003c 6FF01FFF 		j	.L1
+  64              	.L4:
+  65              	.LVL1:
+  66              	.LBB5:
+  67              	.LBB4:
+  19:src/MemoryDesc.cpp ****                toInsert > temp->next)
+  68              		.loc 1 19 9 is_stmt 1
+  19:src/MemoryDesc.cpp ****                toInsert > temp->next)
+  69              		.loc 1 19 38
+  70 0040 13870700 		mv	a4,a5
+  19:src/MemoryDesc.cpp ****                toInsert > temp->next)
+  71              		.loc 1 19 22 is_stmt 0
+  72 0044 83B70700 		ld	a5,0(a5)
+  73              	.LVL2:
+  19:src/MemoryDesc.cpp ****                toInsert > temp->next)
+  74              		.loc 1 19 38
+  75 0048 63840700 		beqz	a5,.L5
+  19:src/MemoryDesc.cpp ****                toInsert > temp->next)
+  76              		.loc 1 19 38 discriminator 1
+  77 004c E3EAB7FE 		bltu	a5,a1,.L4
+GAS LISTING /tmp/ccFtPDiz.s 			page 3
+
+
+  78              	.L5:
+  23:src/MemoryDesc.cpp **** 
+  79              		.loc 1 23 9 is_stmt 1
+  23:src/MemoryDesc.cpp **** 
+  80              		.loc 1 23 24 is_stmt 0
+  81 0050 23B0F500 		sd	a5,0(a1)
+  25:src/MemoryDesc.cpp ****             toInsert->next->prev = toInsert;
+  82              		.loc 1 25 9 is_stmt 1
+  83 0054 63840700 		beqz	a5,.L6
+  26:src/MemoryDesc.cpp **** 
+  84              		.loc 1 26 13
+  26:src/MemoryDesc.cpp **** 
+  85              		.loc 1 26 34 is_stmt 0
+  86 0058 23B4B700 		sd	a1,8(a5)
+  87              	.L6:
+  28:src/MemoryDesc.cpp ****         toInsert->prev = temp;
+  88              		.loc 1 28 9 is_stmt 1
+  28:src/MemoryDesc.cpp ****         toInsert->prev = temp;
+  89              		.loc 1 28 20 is_stmt 0
+  90 005c 2330B700 		sd	a1,0(a4)
+  29:src/MemoryDesc.cpp ****     }
+  91              		.loc 1 29 9 is_stmt 1
+  29:src/MemoryDesc.cpp ****     }
+  92              		.loc 1 29 24 is_stmt 0
+  93 0060 23B4E500 		sd	a4,8(a1)
+  94 0064 6FF09FFC 		j	.L1
+  95              	.LBE4:
+  96              	.LBE5:
+  97              	.LBE7:
+  98              		.cfi_endproc
+  99              	.LFE0:
+ 101              		.align	2
+ 102              		.globl	_Z7deleteePP10MemoryDescS0_
+ 104              	_Z7deleteePP10MemoryDescS0_:
+ 105              	.LFB1:
+  32:src/MemoryDesc.cpp **** 
+  33:src/MemoryDesc.cpp **** void deletee(MemoryDesc **head, MemoryDesc *toDelete){
+ 106              		.loc 1 33 54 is_stmt 1
+ 107              		.cfi_startproc
+ 108              	.LVL3:
+ 109 0068 130101FF 		addi	sp,sp,-16
+ 110              		.cfi_def_cfa_offset 16
+ 111 006c 23348100 		sd	s0,8(sp)
+ 112              		.cfi_offset 8, -8
+ 113 0070 13040101 		addi	s0,sp,16
+ 114              		.cfi_def_cfa 8, 0
+  34:src/MemoryDesc.cpp ****     if(toDelete == nullptr) return;
+ 115              		.loc 1 34 5
+ 116 0074 63880502 		beqz	a1,.L9
+  35:src/MemoryDesc.cpp **** 
+  36:src/MemoryDesc.cpp ****     if (*head == nullptr){
+ 117              		.loc 1 36 5
+ 118              		.loc 1 36 9 is_stmt 0
+ 119 0078 83370500 		ld	a5,0(a0)
+ 120              		.loc 1 36 5
+ 121 007c 63840702 		beqz	a5,.L9
+  37:src/MemoryDesc.cpp ****         return;
+GAS LISTING /tmp/ccFtPDiz.s 			page 4
+
+
+  38:src/MemoryDesc.cpp ****     }
+  39:src/MemoryDesc.cpp **** 
+  40:src/MemoryDesc.cpp ****     if(*head == toDelete) {
+ 122              		.loc 1 40 5 is_stmt 1
+ 123 0080 6388B702 		beq	a5,a1,.L15
+  41:src/MemoryDesc.cpp ****         *head = (*head)->next;
+  42:src/MemoryDesc.cpp ****         toDelete->prev = nullptr;
+  43:src/MemoryDesc.cpp ****         toDelete->next = nullptr;
+  44:src/MemoryDesc.cpp ****         if (*head != nullptr) {
+  45:src/MemoryDesc.cpp ****             (*head)->prev = nullptr;
+  46:src/MemoryDesc.cpp ****         }
+  47:src/MemoryDesc.cpp ****         return;
+  48:src/MemoryDesc.cpp ****     }
+  49:src/MemoryDesc.cpp **** 
+  50:src/MemoryDesc.cpp ****     toDelete->prev->next = toDelete->next;
+ 124              		.loc 1 50 5
+ 125              		.loc 1 50 15 is_stmt 0
+ 126 0084 03B78500 		ld	a4,8(a1)
+ 127              		.loc 1 50 38
+ 128 0088 83B70500 		ld	a5,0(a1)
+ 129              		.loc 1 50 26
+ 130 008c 2330F700 		sd	a5,0(a4)
+  51:src/MemoryDesc.cpp ****     if(toDelete->next != nullptr)
+ 131              		.loc 1 51 5 is_stmt 1
+ 132 0090 63860700 		beqz	a5,.L13
+  52:src/MemoryDesc.cpp ****         toDelete->next->prev = toDelete->prev;
+ 133              		.loc 1 52 9
+ 134              		.loc 1 52 42 is_stmt 0
+ 135 0094 03B78500 		ld	a4,8(a1)
+ 136              		.loc 1 52 30
+ 137 0098 23B4E700 		sd	a4,8(a5)
+ 138              	.L13:
+  53:src/MemoryDesc.cpp **** 
+  54:src/MemoryDesc.cpp ****     toDelete->prev = nullptr;
+ 139              		.loc 1 54 5 is_stmt 1
+ 140              		.loc 1 54 20 is_stmt 0
+ 141 009c 23B40500 		sd	zero,8(a1)
+  55:src/MemoryDesc.cpp ****     toDelete->next = nullptr;
+ 142              		.loc 1 55 5 is_stmt 1
+ 143              		.loc 1 55 20 is_stmt 0
+ 144 00a0 23B00500 		sd	zero,0(a1)
+ 145              	.L9:
+  56:src/MemoryDesc.cpp **** 
+  57:src/MemoryDesc.cpp **** }
+ 146              		.loc 1 57 1
+ 147 00a4 03348100 		ld	s0,8(sp)
+ 148              		.cfi_remember_state
+ 149              		.cfi_restore 8
+ 150              		.cfi_def_cfa 2, 16
+ 151 00a8 13010101 		addi	sp,sp,16
+ 152              		.cfi_def_cfa_offset 0
+ 153 00ac 67800000 		jr	ra
+ 154              	.L15:
+ 155              		.cfi_restore_state
+  41:src/MemoryDesc.cpp ****         toDelete->prev = nullptr;
+ 156              		.loc 1 41 9 is_stmt 1
+  41:src/MemoryDesc.cpp ****         toDelete->prev = nullptr;
+GAS LISTING /tmp/ccFtPDiz.s 			page 5
+
+
+ 157              		.loc 1 41 26 is_stmt 0
+ 158 00b0 83B70700 		ld	a5,0(a5)
+  41:src/MemoryDesc.cpp ****         toDelete->prev = nullptr;
+ 159              		.loc 1 41 15
+ 160 00b4 2330F500 		sd	a5,0(a0)
+  42:src/MemoryDesc.cpp ****         toDelete->next = nullptr;
+ 161              		.loc 1 42 9 is_stmt 1
+  42:src/MemoryDesc.cpp ****         toDelete->next = nullptr;
+ 162              		.loc 1 42 24 is_stmt 0
+ 163 00b8 23B40500 		sd	zero,8(a1)
+  43:src/MemoryDesc.cpp ****         if (*head != nullptr) {
+ 164              		.loc 1 43 9 is_stmt 1
+  43:src/MemoryDesc.cpp ****         if (*head != nullptr) {
+ 165              		.loc 1 43 24 is_stmt 0
+ 166 00bc 23B00500 		sd	zero,0(a1)
+  44:src/MemoryDesc.cpp ****             (*head)->prev = nullptr;
+ 167              		.loc 1 44 9 is_stmt 1
+  44:src/MemoryDesc.cpp ****             (*head)->prev = nullptr;
+ 168              		.loc 1 44 13 is_stmt 0
+ 169 00c0 83370500 		ld	a5,0(a0)
+  44:src/MemoryDesc.cpp ****             (*head)->prev = nullptr;
+ 170              		.loc 1 44 9
+ 171 00c4 E38007FE 		beqz	a5,.L9
+  45:src/MemoryDesc.cpp ****         }
+ 172              		.loc 1 45 13 is_stmt 1
+  45:src/MemoryDesc.cpp ****         }
+ 173              		.loc 1 45 27 is_stmt 0
+ 174 00c8 23B40700 		sd	zero,8(a5)
+  47:src/MemoryDesc.cpp ****     }
+ 175              		.loc 1 47 9 is_stmt 1
+ 176 00cc 6FF09FFD 		j	.L9
+ 177              		.cfi_endproc
+ 178              	.LFE1:
+ 180              	.Letext0:
+ 181              		.file 2 "src/../h/../lib/hw.h"
+ 182              		.file 3 "src/../h/MemoryDesc.hpp"
+GAS LISTING /tmp/ccFtPDiz.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 MemoryDesc.cpp
+     /tmp/ccFtPDiz.s:9      .text:0000000000000000 _Z6insertPP10MemoryDescS0_12MemoryStatus
+     /tmp/ccFtPDiz.s:13     .text:0000000000000000 .L0 
+     /tmp/ccFtPDiz.s:15     .text:0000000000000000 .L0 
+     /tmp/ccFtPDiz.s:16     .text:0000000000000004 .L0 
+     /tmp/ccFtPDiz.s:18     .text:0000000000000008 .L0 
+     /tmp/ccFtPDiz.s:20     .text:000000000000000c .L0 
+     /tmp/ccFtPDiz.s:22     .text:000000000000000c .L0 
+     /tmp/ccFtPDiz.s:24     .text:0000000000000010 .L0 
+     /tmp/ccFtPDiz.s:25     .text:0000000000000010 .L0 
+     /tmp/ccFtPDiz.s:28     .text:0000000000000014 .L0 
+     /tmp/ccFtPDiz.s:29     .text:0000000000000014 .L0 
+     /tmp/ccFtPDiz.s:31     .text:0000000000000018 .L0 
+     /tmp/ccFtPDiz.s:36     .text:000000000000001c .L0 
+     /tmp/ccFtPDiz.s:38     .text:0000000000000020 .L0 
+     /tmp/ccFtPDiz.s:39     .text:0000000000000020 .L0 
+     /tmp/ccFtPDiz.s:41     .text:0000000000000024 .L0 
+     /tmp/ccFtPDiz.s:42     .text:0000000000000024 .L0 
+     /tmp/ccFtPDiz.s:44     .text:0000000000000028 .L0 
+     /tmp/ccFtPDiz.s:45     .text:0000000000000028 .L0 
+     /tmp/ccFtPDiz.s:50     .text:000000000000002c .L0 
+     /tmp/ccFtPDiz.s:51     .text:0000000000000030 .L0 
+     /tmp/ccFtPDiz.s:52     .text:0000000000000030 .L0 
+     /tmp/ccFtPDiz.s:53     .text:0000000000000030 .L0 
+     /tmp/ccFtPDiz.s:55     .text:0000000000000034 .L0 
+     /tmp/ccFtPDiz.s:58     .text:0000000000000038 .L0 
+     /tmp/ccFtPDiz.s:61     .text:0000000000000038 .L0 
+     /tmp/ccFtPDiz.s:62     .text:0000000000000038 .L0 
+     /tmp/ccFtPDiz.s:69     .text:0000000000000040 .L0 
+     /tmp/ccFtPDiz.s:70     .text:0000000000000040 .L0 
+     /tmp/ccFtPDiz.s:72     .text:0000000000000044 .L0 
+     /tmp/ccFtPDiz.s:75     .text:0000000000000048 .L0 
+     /tmp/ccFtPDiz.s:77     .text:000000000000004c .L0 
+     /tmp/ccFtPDiz.s:80     .text:0000000000000050 .L0 
+     /tmp/ccFtPDiz.s:81     .text:0000000000000050 .L0 
+     /tmp/ccFtPDiz.s:83     .text:0000000000000054 .L0 
+     /tmp/ccFtPDiz.s:85     .text:0000000000000058 .L0 
+     /tmp/ccFtPDiz.s:86     .text:0000000000000058 .L0 
+     /tmp/ccFtPDiz.s:89     .text:000000000000005c .L0 
+     /tmp/ccFtPDiz.s:90     .text:000000000000005c .L0 
+     /tmp/ccFtPDiz.s:92     .text:0000000000000060 .L0 
+     /tmp/ccFtPDiz.s:93     .text:0000000000000060 .L0 
+     /tmp/ccFtPDiz.s:98     .text:0000000000000068 .L0 
+     /tmp/ccFtPDiz.s:104    .text:0000000000000068 _Z7deleteePP10MemoryDescS0_
+     /tmp/ccFtPDiz.s:107    .text:0000000000000068 .L0 
+     /tmp/ccFtPDiz.s:109    .text:0000000000000068 .L0 
+     /tmp/ccFtPDiz.s:110    .text:000000000000006c .L0 
+     /tmp/ccFtPDiz.s:112    .text:0000000000000070 .L0 
+     /tmp/ccFtPDiz.s:114    .text:0000000000000074 .L0 
+     /tmp/ccFtPDiz.s:116    .text:0000000000000074 .L0 
+     /tmp/ccFtPDiz.s:118    .text:0000000000000078 .L0 
+     /tmp/ccFtPDiz.s:119    .text:0000000000000078 .L0 
+     /tmp/ccFtPDiz.s:121    .text:000000000000007c .L0 
+     /tmp/ccFtPDiz.s:123    .text:0000000000000080 .L0 
+     /tmp/ccFtPDiz.s:125    .text:0000000000000084 .L0 
+     /tmp/ccFtPDiz.s:126    .text:0000000000000084 .L0 
+GAS LISTING /tmp/ccFtPDiz.s 			page 7
+
+
+     /tmp/ccFtPDiz.s:128    .text:0000000000000088 .L0 
+     /tmp/ccFtPDiz.s:130    .text:000000000000008c .L0 
+     /tmp/ccFtPDiz.s:132    .text:0000000000000090 .L0 
+     /tmp/ccFtPDiz.s:134    .text:0000000000000094 .L0 
+     /tmp/ccFtPDiz.s:135    .text:0000000000000094 .L0 
+     /tmp/ccFtPDiz.s:137    .text:0000000000000098 .L0 
+     /tmp/ccFtPDiz.s:140    .text:000000000000009c .L0 
+     /tmp/ccFtPDiz.s:141    .text:000000000000009c .L0 
+     /tmp/ccFtPDiz.s:143    .text:00000000000000a0 .L0 
+     /tmp/ccFtPDiz.s:144    .text:00000000000000a0 .L0 
+     /tmp/ccFtPDiz.s:147    .text:00000000000000a4 .L0 
+     /tmp/ccFtPDiz.s:148    .text:00000000000000a8 .L0 
+     /tmp/ccFtPDiz.s:149    .text:00000000000000a8 .L0 
+     /tmp/ccFtPDiz.s:150    .text:00000000000000a8 .L0 
+     /tmp/ccFtPDiz.s:152    .text:00000000000000ac .L0 
+     /tmp/ccFtPDiz.s:155    .text:00000000000000b0 .L0 
+     /tmp/ccFtPDiz.s:157    .text:00000000000000b0 .L0 
+     /tmp/ccFtPDiz.s:158    .text:00000000000000b0 .L0 
+     /tmp/ccFtPDiz.s:160    .text:00000000000000b4 .L0 
+     /tmp/ccFtPDiz.s:162    .text:00000000000000b8 .L0 
+     /tmp/ccFtPDiz.s:163    .text:00000000000000b8 .L0 
+     /tmp/ccFtPDiz.s:165    .text:00000000000000bc .L0 
+     /tmp/ccFtPDiz.s:166    .text:00000000000000bc .L0 
+     /tmp/ccFtPDiz.s:168    .text:00000000000000c0 .L0 
+     /tmp/ccFtPDiz.s:169    .text:00000000000000c0 .L0 
+     /tmp/ccFtPDiz.s:171    .text:00000000000000c4 .L0 
+     /tmp/ccFtPDiz.s:173    .text:00000000000000c8 .L0 
+     /tmp/ccFtPDiz.s:174    .text:00000000000000c8 .L0 
+     /tmp/ccFtPDiz.s:176    .text:00000000000000cc .L0 
+     /tmp/ccFtPDiz.s:177    .text:00000000000000d0 .L0 
+     /tmp/ccFtPDiz.s:183    .text:00000000000000d0 .L0 
+     /tmp/ccFtPDiz.s:46     .text:000000000000002c .L1
+     /tmp/ccFtPDiz.s:57     .text:0000000000000038 .L8
+     /tmp/ccFtPDiz.s:64     .text:0000000000000040 .L4
+     /tmp/ccFtPDiz.s:78     .text:0000000000000050 .L5
+     /tmp/ccFtPDiz.s:87     .text:000000000000005c .L6
+     /tmp/ccFtPDiz.s:145    .text:00000000000000a4 .L9
+     /tmp/ccFtPDiz.s:154    .text:00000000000000b0 .L15
+     /tmp/ccFtPDiz.s:138    .text:000000000000009c .L13
+     /tmp/ccFtPDiz.s:448    .debug_abbrev:0000000000000000 .Ldebug_abbrev0
+     /tmp/ccFtPDiz.s:808    .debug_str:0000000000000184 .LASF28
+     /tmp/ccFtPDiz.s:776    .debug_str:0000000000000087 .LASF29
+     /tmp/ccFtPDiz.s:770    .debug_str:000000000000004f .LASF30
+     /tmp/ccFtPDiz.s:5      .text:0000000000000000 .Ltext0
+     /tmp/ccFtPDiz.s:180    .text:00000000000000d0 .Letext0
+     /tmp/ccFtPDiz.s:754    .debug_line:0000000000000000 .Ldebug_line0
+     /tmp/ccFtPDiz.s:758    .debug_str:0000000000000009 .LASF0
+     /tmp/ccFtPDiz.s:806    .debug_str:0000000000000171 .LASF1
+     /tmp/ccFtPDiz.s:786    .debug_str:00000000000000bf .LASF2
+     /tmp/ccFtPDiz.s:778    .debug_str:000000000000009a .LASF4
+     /tmp/ccFtPDiz.s:774    .debug_str:0000000000000075 .LASF3
+     /tmp/ccFtPDiz.s:766    .debug_str:0000000000000038 .LASF5
+     /tmp/ccFtPDiz.s:818    .debug_str:0000000000000271 .LASF6
+     /tmp/ccFtPDiz.s:804    .debug_str:000000000000015e .LASF7
+     /tmp/ccFtPDiz.s:816    .debug_str:0000000000000261 .LASF8
+     /tmp/ccFtPDiz.s:762    .debug_str:000000000000001b .LASF9
+     /tmp/ccFtPDiz.s:764    .debug_str:0000000000000029 .LASF10
+GAS LISTING /tmp/ccFtPDiz.s 			page 8
+
+
+     /tmp/ccFtPDiz.s:810    .debug_str:0000000000000248 .LASF11
+     /tmp/ccFtPDiz.s:768    .debug_str:000000000000003f .LASF12
+     /tmp/ccFtPDiz.s:822    .debug_str:0000000000000289 .LASF13
+     /tmp/ccFtPDiz.s:784    .debug_str:00000000000000b3 .LASF14
+     /tmp/ccFtPDiz.s:798    .debug_str:0000000000000112 .LASF15
+     /tmp/ccFtPDiz.s:790    .debug_str:00000000000000d6 .LASF16
+     /tmp/ccFtPDiz.s:800    .debug_str:0000000000000128 .LASF31
+     /tmp/ccFtPDiz.s:826    .debug_str:00000000000002a1 .LASF17
+     /tmp/ccFtPDiz.s:760    .debug_str:0000000000000016 .LASF18
+     /tmp/ccFtPDiz.s:782    .debug_str:00000000000000a8 .LASF23
+     /tmp/ccFtPDiz.s:812    .debug_str:0000000000000257 .LASF19
+     /tmp/ccFtPDiz.s:820    .debug_str:0000000000000284 .LASF20
+     /tmp/ccFtPDiz.s:814    .debug_str:000000000000025c .LASF21
+     /tmp/ccFtPDiz.s:772    .debug_str:000000000000006e .LASF22
+     /tmp/ccFtPDiz.s:824    .debug_str:0000000000000299 .LASF32
+     /tmp/ccFtPDiz.s:792    .debug_str:00000000000000ec .LASF33
+     /tmp/ccFtPDiz.s:105    .text:0000000000000068 .LFB1
+     /tmp/ccFtPDiz.s:178    .text:00000000000000d0 .LFE1
+     /tmp/ccFtPDiz.s:794    .debug_str:0000000000000108 .LASF24
+     /tmp/ccFtPDiz.s:788    .debug_str:00000000000000cd .LASF25
+     /tmp/ccFtPDiz.s:780    .debug_str:00000000000000a1 .LASF34
+     /tmp/ccFtPDiz.s:802    .debug_str:0000000000000135 .LASF35
+     /tmp/ccFtPDiz.s:10     .text:0000000000000000 .LFB0
+     /tmp/ccFtPDiz.s:99     .text:0000000000000068 .LFE0
+     /tmp/ccFtPDiz.s:756    .debug_str:0000000000000000 .LASF26
+     /tmp/ccFtPDiz.s:67     .text:0000000000000040 .LBB4
+     /tmp/ccFtPDiz.s:95     .text:0000000000000068 .LBE4
+     /tmp/ccFtPDiz.s:796    .debug_str:000000000000010d .LASF27
+     /tmp/ccFtPDiz.s:730    .debug_loc:0000000000000000 .LLST0
+     /tmp/ccFtPDiz.s:65     .text:0000000000000040 .LVL1
+     /tmp/ccFtPDiz.s:73     .text:0000000000000048 .LVL2
+     /tmp/ccFtPDiz.s:184    .debug_info:0000000000000000 .Ldebug_info0
+
+NO UNDEFINED SYMBOLS
