@@ -1,2 +1,2 @@
 # RISCV-Kernel
-Multithreaded kernel written in C++, C and assembly.
+Multithreaded kernel written in C++, C and assembly supporting threads, semaphores and memory allocation.
